@@ -1,6 +1,8 @@
 <script setup>
 import {ref} from "vue";
 import PreDimensions from "./components/PreDimensions.vue"
+import PreActions from "./components/PreActions.vue"
+import PreCanvas from "./components/PreCanvas.vue"
 
 const width = ref(80)
 const height = ref(25)
@@ -10,19 +12,17 @@ const height = ref(25)
   <h2>Edit pre tags</h2>
   <details>
     <summary>Options</summary>
-    <PreDimensions v-model:width="width" v-model:height="height"/>
+    <div>
+      <span><!-- not sure why but this fixes an layout issue for the first element--></span>
+      <PreDimensions v-model:width="width" v-model:height="height"/>
+      <PreActions/>
+    </div>
   </details>
-  <pre>X
-                x
-
-    x
-
-  X</pre>
+  <PreCanvas />
 </template>
 <style scoped>
-pre {
-  border: 1px solid var(--text-color);
-  min-width: v-bind(width) rem;
-  min-height: v-bind(height) rem;
+details > div {
+  display: flex;
+  gap: 1rem;
 }
 </style>

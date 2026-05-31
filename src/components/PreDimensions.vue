@@ -1,6 +1,4 @@
 <script setup>
-import {defineModel} from "vue"
-
   const width = defineModel('width')
   const height = defineModel('height')
 </script>
@@ -15,9 +13,6 @@ fieldset {
   display: flex;
   align-items: center;
   max-width: 12rem;
-}
-fieldset>input {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  gap: 1rem;
 }
 </style>
