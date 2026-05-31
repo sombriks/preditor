@@ -1,4 +1,8 @@
-# preditor
+# [preditor][repo]
 
-Editor de tag pre
+[repo]: https://github.com/sombriks/preditor
+
+Pre tag editor
+
+
 

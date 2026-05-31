@@ -4,7 +4,9 @@ import {usePreDoc} from "../composables/usePreDoc.js"
 const {content, width, height} = usePreDoc()
 </script>
 <template>
-  <pre v-html="content"></pre>
+  <div>
+    <pre v-html="content"></pre>
+  </div>
 </template>
 <style scoped>
 pre {
@@ -16,4 +18,8 @@ pre {
   display: inline-block;
   overflow-x: scroll;
 }
+pre:hover {
+  cursor: pointer;
+}
+
 </style>
