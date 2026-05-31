@@ -7,11 +7,25 @@
     "prebuild": "rm -rf dist .parcel-cache"
   },
   "devDependencies": {
+    "@angular/animations": "^21.2.15",
+    "@angular/common": "^21.2.15",
+    "@angular/compiler": "^21.2.15",
+    "@angular/core": "^21.2.15",
+    "@angular/elements": "^21.2.15",
+    "@angular/platform-browser": "^21.2.15",
     "@owickstrom/the-monospace-web": "^0.1.5",
+    "@parcel/resolver-glob": "^2.16.4",
+    "@parcel/transformer-typescript-tsc": "^2.16.4",
     "@parcel/transformer-vue": "^2.16.4",
     "parcel": "^2.16.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "vue": "^3.5.35"
+    "rxjs": "^7.8.2",
+    "typescript": "^6.0.3",
+    "vue": "^3.5.35",
+    "zone.js": "^0.16.2"
+  },
+  "@parcel/resolver-default": {
+    "packageExports": true
   }
 }

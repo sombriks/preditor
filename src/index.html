@@ -2,10 +2,12 @@
     @import 'npm:@owickstrom/the-monospace-web/src/reset.css';
     @import 'npm:@owickstrom/the-monospace-web/src/index.css';
 </style>
-<div id="app1"></div>
 <div id="app2"></div>
+<app-root/>
+<div id="app1"></div>
 <script type="module" src="./App.vue"></script>
 <script type="module" src="./App.jsx"></script>
+<script type="module" src="./App.component/App.ts"></script>
 <script type="module">
   import React from 'react';
   import {createRoot} from 'react-dom/client';
@@ -14,6 +16,18 @@
   const root = document.getElementById('app2')
   createRoot(root)
     .render(<App/>);
+</script>
+<script type="module">
+  import '@angular/compiler'
+  import {createCustomElement} from '@angular/elements'
+  import {createApplication} from '@angular/platform-browser'
+  import {AppComponent} from './App.component/App'
+
+  createApplication({providers: []})
+    .then(appRef => {
+      const element = createCustomElement(AppComponent, {injector: appRef.injector});
+      customElements.define('app-root', element);
+    }).catch(err => console.error(err));
 </script>
 <script type="module">
   import {createApp} from 'vue'
