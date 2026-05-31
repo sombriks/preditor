@@ -10,6 +10,8 @@
     "@owickstrom/the-monospace-web": "^0.1.5",
     "@parcel/transformer-vue": "^2.16.4",
     "parcel": "^2.16.4",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "vue": "^3.5.35"
   }
 }

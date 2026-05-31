@@ -1,7 +1,24 @@
-<div id="app"></div>
+<style type="text/css">
+    @import 'npm:@owickstrom/the-monospace-web/src/reset.css';
+    @import 'npm:@owickstrom/the-monospace-web/src/index.css';
+</style>
+<div id="app1"></div>
+<div id="app2"></div>
 <script type="module" src="./App.vue"></script>
+<script type="module" src="./App.jsx"></script>
 <script type="module">
-    import { createApp } from 'vue'
-    import App from './App.vue'
-    createApp(App).mount('#app')
+  import React from 'react';
+  import {createRoot} from 'react-dom/client';
+  import {App} from './App.jsx'
+
+  const root = document.getElementById('app2')
+  createRoot(root)
+    .render(<App/>);
+</script>
+<script type="module">
+  import {createApp} from 'vue'
+  import App from './App.vue'
+
+  createApp(App)
+    .mount('#app1')
 </script>
