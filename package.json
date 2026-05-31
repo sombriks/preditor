@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "predev": "rm -rf .parcel-cache",
+    "build": "parcel build src/index.html",
+    "prebuild": "rm -rf dist .parcel-cache"
+  },
+  "devDependencies": {
+    "@owickstrom/the-monospace-web": "^0.1.5",
+    "@parcel/transformer-vue": "^2.16.4",
+    "parcel": "^2.16.4",
+    "vue": "^3.5.35"
+  }
+}
