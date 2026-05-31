@@ -1,38 +1,23 @@
-<style type="text/css">
-    @import 'npm:@owickstrom/the-monospace-web/src/reset.css';
-    @import 'npm:@owickstrom/the-monospace-web/src/index.css';
-</style>
-<div id="app2"></div>
-<app-root/>
-<div id="app1"></div>
-<script type="module" src="./App.vue"></script>
-<script type="module" src="./App.jsx"></script>
-<script type="module" src="./App.component/App.ts"></script>
-<script type="module">
-  import React from 'react';
-  import {createRoot} from 'react-dom/client';
-  import {App} from './App.jsx'
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Preditor</title>
+        <script type="module" src="./App.vue"></script>
+        <script type="module" defer>
+          import '@owickstrom/the-monospace-web/src/reset.css'
+          import '@owickstrom/the-monospace-web/src/index.css'
+          import {createApp} from 'vue'
+          import App from './App.vue'
 
-  const root = document.getElementById('app2')
-  createRoot(root)
-    .render(<App/>);
-</script>
-<script type="module">
-  import '@angular/compiler'
-  import {createCustomElement} from '@angular/elements'
-  import {createApplication} from '@angular/platform-browser'
-  import {AppComponent} from './App.component/App'
-
-  createApplication({providers: []})
-    .then(appRef => {
-      const element = createCustomElement(AppComponent, {injector: appRef.injector});
-      customElements.define('app-root', element);
-    }).catch(err => console.error(err));
-</script>
-<script type="module">
-  import {createApp} from 'vue'
-  import App from './App.vue'
-
-  createApp(App)
-    .mount('#app1')
-</script>
+          window.addEventListener('DOMContentLoaded', () => {
+            createApp(App)
+              .mount('#app')
+          })
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
