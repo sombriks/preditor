@@ -1,12 +1,7 @@
 <script setup>
-import {ref} from "vue"
+import {usePreDoc} from "../composables/usePreDoc.js"
 
-const content = ref(`X
-   X
-
-
-
-              X`)
+const {content, width, height} = usePreDoc()
 </script>
 <template>
   <pre v-html="content"></pre>
@@ -14,5 +9,11 @@ const content = ref(`X
 <style scoped>
 pre {
   border: 1px solid var(--text-color);
+  max-width: v-bind(width) rem;
+  min-width: v-bind(width) rem;
+  max-height: v-bind(height) rem;
+  min-height: v-bind(height) rem;
+  display: inline-block;
+  overflow-x: scroll;
 }
 </style>

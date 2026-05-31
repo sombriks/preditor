@@ -1,19 +1,24 @@
 <script setup>
-
+import {usePreDoc} from "../composables/usePreDoc.js"
+const {reset} = usePreDoc()
 </script>
 <template>
   <fieldset>
     <legend>Actions</legend>
-    <button>Reset</button>
-    <button>Copy</button>
-    <button>Paste</button>
+    <div>
+      <button @click="reset">Reset</button>
+      <button>Copy</button>
+      <button>Paste</button>
+    </div>
   </fieldset>
 </template>
 <style scoped>
 fieldset {
+  display: inline-block;
+}
+div {
   display: flex;
   align-items: center;
-  max-width: 15rem;
   gap: 1rem;
 }
 </style>

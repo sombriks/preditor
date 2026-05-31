@@ -1,18 +1,25 @@
 <script setup>
-  const width = defineModel('width')
-  const height = defineModel('height')
+import {usePreDoc} from "../composables/usePreDoc.js"
+const {width, height} = usePreDoc()
 </script>
 <template>
   <fieldset>
     <legend>Dimensions</legend>
-    <input type="number" v-model="width"/> X <input type="number" v-model="height"/>
+    <div>
+      <input type="number" v-model="width"/> X <input type="number" v-model="height"/>
+    </div>
   </fieldset>
 </template>
 <style scoped>
 fieldset {
+  display: inline-block;
+}
+div {
   display: flex;
   align-items: center;
-  max-width: 12rem;
   gap: 1rem;
+}
+input {
+  max-width: 5rem;
 }
 </style>
