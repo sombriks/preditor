@@ -1,8 +1,8 @@
 import {ref} from "vue"
 
 const content = ref('')
-const width = ref(80)
-const height = ref(25)
+const width = ref(25)
+const height = ref(10)
 
 function reset() {
   let data = ''
@@ -10,7 +10,7 @@ function reset() {
     for (let j = 0; j < width.value; j++) {
       data += ' '
     }
-    if (i < height.value - 1) {
+    if (i < height.value) {
       data += '\n'
     }
   }

@@ -1,7 +1,14 @@
 <script setup>
+import {onMounted} from "vue";
+
 import PreDimensions from "./components/PreDimensions.vue"
 import PreActions from "./components/PreActions.vue"
 import PreCanvas from "./components/PreCanvas.vue"
+import {usePreDoc} from "./composables/usePreDoc.js"
+
+const {reset} = usePreDoc()
+
+onMounted(reset)
 </script>
 <template>
   <h1>Preditor</h1>
