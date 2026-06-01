@@ -5,9 +5,12 @@
 <div id="app2"></div>
 <app-root/>
 <div id="app1"></div>
+<div id="app3"></div>
 <script type="module" src="./App.vue"></script>
+<script type="module" src="./App.svelte"></script>
 <script type="module" src="./App.jsx"></script>
 <script type="module" src="./App.component/App.ts"></script>
+<!-- bootstrap all different entrypoints -->
 <script type="module">
   import React from 'react';
   import {createRoot} from 'react-dom/client';
@@ -35,4 +38,10 @@
 
   createApp(App)
     .mount('#app1')
+</script>
+<script type="module">
+  import App from './App.svelte';
+
+  const target = document.getElementById('app3');
+  new App({ target });
 </script>
