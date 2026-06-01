@@ -1,5 +1,5 @@
 <script setup>
-import {usePreDoc} from "../composables/usePreDoc.js"
+import {usePreDoc} from "../composables/usePreDoc"
 const {reset} = usePreDoc()
 </script>
 <template>
