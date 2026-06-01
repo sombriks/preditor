@@ -1,26 +1,29 @@
 <script setup>
 import {usePreDoc} from "../composables/usePreDoc"
 
-const {content, width, height} = usePreDoc()
+const {brush, content, width, height, paint} = usePreDoc()
 
-function click(event) {
-  const x = event.clientX
-  const y = event.clientY
+function draw(down, x, y) {
+  if(!down) {
+    return
+  }
   const caret = document.caretPositionFromPoint(x, y);
-
   if (caret && caret.offsetNode) {
     const textNode = caret.offsetNode;
     const charIndex = caret.offset;
     const fullText = textNode.textContent;
-    const repl = fullText.split('')
-    repl.splice(charIndex, 1, '▒')
-    content.value = repl.join('')
+    const ch = fullText.charAt(charIndex)
+    if(ch !== '\n') {
+      paint(brush.value, charIndex)
+    }
   }
 }
 </script>
 <template>
   <div>
-    <pre v-html="content" @click="click"></pre>
+    <pre v-html="content"
+         @click="draw(true, $event.clientX, $event.clientY)"
+         @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"></pre>
   </div>
 </template>
 <style scoped>
@@ -31,10 +34,12 @@ pre {
   max-height: v-bind(height) rem;
   min-height: v-bind(height) rem;
   display: inline-block;
-  overflow-x: scroll;
+  user-select: none;
+  overflow: auto;
+  user-drag: none;
 }
 pre:hover {
-  cursor: pointer;
+  cursor: crosshair;
 }
 
 </style>

@@ -1,36 +1,33 @@
 <script setup>
-import {ref} from "vue";
-// TODO https://en.wikipedia.org/wiki/Box-drawing_characters
-const chars = ref([
-  '\u2800', '─', '┄', '┅', '╌', '╍', '═', '▀', '▁', '▂', //
-  '▃', '▄', '▅', '▆', '▇', '█', '▉', '▊', '▋', '▌', '▍', '▎', '▏', //
-  '▐', '▕', '▖', '▗', '▘', '▙', '▚', '▛', '▜', '▝', '▞', '▟', //
-  '░', '▒', '▓', '█', '▔', '▕', '▔', '▕'
-])
-function foo(char) {
-  console.log(char)
+import {usePreDoc} from "../composables/usePreDoc"
+import  {useCharacters} from "../composables/useCharacters"
+
+const {brush} = usePreDoc()
+const {chars} = useCharacters()
+
+function setBrush(char) {
+  brush.value = char
 }
 </script>
 <template>
-  <div class="palette-box">
-    <h2>Palette</h2>
+  <details>
+    <summary>Palette</summary>
     <div class="palette-container">
-      <button v-for="char in chars"
-              :key="char"
-              @click="foo(char)">{{ char }}
+      <button :key="char"
+              v-for="char in chars"
+              @click="setBrush(char)"
+              :class="{unselected: brush !== char}">{{ char }}
       </button>
     </div>
-  </div>
+  </details>
 </template>
 <style scoped>
-.palette-box {
-  display: inline-block;
-  max-width: 5rem;
-}
-
 .palette-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+.unselected {
+  border: 0;
 }
 </style>

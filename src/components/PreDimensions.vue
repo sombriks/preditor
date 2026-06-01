@@ -6,7 +6,9 @@ const {width, height} = usePreDoc()
   <fieldset>
     <legend>Dimensions</legend>
     <div>
-      <input type="number" v-model="width"/> X <input type="number" v-model="height"/>
+      <input v-model="width" type="number" min="10" max="1000"/>
+      X
+      <input v-model="height" type="number" min="10" max="1000"/>
     </div>
   </fieldset>
 </template>
