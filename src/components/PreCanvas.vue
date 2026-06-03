@@ -24,6 +24,7 @@ function draw(down, x, y) {
     <pre v-html="content"
          @click="draw(true, $event.clientX, $event.clientY)"
          @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"></pre>
+<!--          <pre>🯰🯱🯲🯳🯴🯵🯶🯷🯸🯹</pre> -->
   </div>
 </template>
 <style scoped>
