@@ -24,9 +24,7 @@ jobs:
           node-version-file: 'package.json'
       - run: |
           npm install
-          npm run build
-        env:
-          PUBLIC_URL: /preditor
+          npm run build:gh
       - uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'

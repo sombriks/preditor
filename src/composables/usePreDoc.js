@@ -24,8 +24,11 @@ function reset() {
   matrix.value = m
 }
 
-function paint(char, matrixIndex) {
-  const cell = content.value.find(cell => cell.matrixIndex === matrixIndex)
+function paint(char, data) {
+  if (!data) {
+    return
+  }
+  const cell = content.value.find(cell => cell.matrixIndex === data.matrixIndex)
   if (cell && cell.char !== '\n') {
     cell.char = char
   }

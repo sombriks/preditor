@@ -11,9 +11,7 @@ function draw(down, x, y) {
   if (!spanMaybe) {
     return
   }
-  if (spanMaybe.dataset.matrixIndex !== undefined) {
-    paint(brush.value, parseInt(spanMaybe.dataset.matrixIndex))
-  }
+  paint(brush.value, spanMaybe.dataset)
 }
 </script>
 <template>

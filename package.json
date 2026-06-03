@@ -5,7 +5,8 @@
     "dev": "parcel src/index.html --open",
     "predev": "rm -rf .parcel-cache",
     "build": "parcel build src/index.html",
-    "prebuild": "rm -rf dist .parcel-cache"
+    "prebuild": "rm -rf dist .parcel-cache",
+    "build:gh": "parcel build --public-url /preditor src/index.html"
   },
   "devDependencies": {
     "@owickstrom/the-monospace-web": "^0.1.5",
