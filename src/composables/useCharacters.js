@@ -1,5 +1,3 @@
-import {ref} from "vue"
-
 const theBigBlock = `
 \u2800
 ─━│┃┄┅┆┇┈┉┊┋┌┍┎┏
@@ -12,9 +10,6 @@ const theBigBlock = `
 ╰╱╲╳╴╵╶╷╸╹╺╻╼╽╾╿
 ▀▁▂▃▄▅▆▇█▉▊▋▌▍▎▏
 ▐░▒▓▔▕▖▗▘▙▚▛▜▝▞▟
-`
-// estes não tão pegando
-const extra = `
 🬀🬁🬂🬃🬄🬅🬆🬇🬈🬉🬊🬋🬌🬍🬎🬏
 🬐🬑🬒🬓🬔🬕🬖🬗🬘🬙🬚🬛🬜🬝🬞🬟
 🬠🬡🬢🬣🬤🬥🬦🬧🬨🬩🬪🬫🬬🬭🬮🬯
@@ -73,7 +68,6 @@ const extra = `
 
 export function useCharacters() {
 // TODO https://en.wikipedia.org/wiki/Box-drawing_characters
-  const chars = ref(theBigBlock.trim().split('').filter(c => c !== '\n'))
-  const extras = ref(extra)
-  return {chars,extras}
+  const chars = [...(theBigBlock.trim())].filter(c => c !== '\n')
+  return {chars}
 }

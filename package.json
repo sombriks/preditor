@@ -2,7 +2,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --open",
     "predev": "rm -rf .parcel-cache",
     "build": "parcel build src/index.html",
     "prebuild": "rm -rf dist .parcel-cache"

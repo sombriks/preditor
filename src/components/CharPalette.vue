@@ -1,9 +1,7 @@
 <script setup>
 import {usePreDoc} from "../composables/usePreDoc"
-import  {useCharacters} from "../composables/useCharacters"
 
-const {brush} = usePreDoc()
-const {chars} = useCharacters()
+const {brush, chars} = usePreDoc()
 
 function setBrush(char) {
   brush.value = char
@@ -25,7 +23,7 @@ function setBrush(char) {
 .palette-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap:0;
 }
 .unselected {
   border: 0;

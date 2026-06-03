@@ -1,56 +1,36 @@
 import {computed, ref} from "vue"
+import {useCharacters} from "./useCharacters"
+import {useDimensions} from "./useDimensions"
 
-const brush = ref('\u2800')
-const preMatrix = ref([])
-const w = ref(25)
-const h = ref(10)
+const {width, height} = useDimensions()
+const {chars} = useCharacters()
 
-const width = computed({
-  get: () => w.value,
-  set: (value) => {
-    if (value < 10) value = 10
-    if (value > 1000) value = 1000
-    w.value = value
-  }
-})
+const brush = ref(chars[0])
+const matrix = ref([])
 
-const height = computed({
-  get: () => h.value,
-  set: (value) => {
-    if (value < 10) value = 10
-    if (value > 1000) value = 1000
-    h.value = value
-  }
-})
-
-const content = computed(() =>
-  preMatrix.value
-    .map(row => row
-      .map(cell => cell.char)
-      .join(''))
-    .join('\n'))
+const content = computed(() => matrix.value.flat())
 
 function reset() {
   let idx = 0
-  const matrix = []
+  const m = []
   for (let i = 0; i < height.value; i++) {
     const row = []
     for (let j = 0; j < width.value; j++) {
-      row.push({char: brush.value, index: idx++})
+      row.push({char: chars[0], matrixIndex: idx++, rowIndex: i, colIndex: j})
     }
-    idx++
-    matrix.push(row)
+    row.push({char: '\n', matrixIndex: idx++})
+    m.push(row)
   }
-  preMatrix.value = matrix
+  matrix.value = m
 }
 
-function paint(char, index) {
-  const cell = preMatrix.value.flat().find(cell => cell.index === index)
-  if (cell) {
+function paint(char, matrixIndex) {
+  const cell = content.value.find(cell => cell.matrixIndex === matrixIndex)
+  if (cell && cell.char !== '\n') {
     cell.char = char
   }
 }
 
 export function usePreDoc() {
-  return {brush, content, width, height, reset, paint}
+  return {chars, brush, content, width, height, reset, paint}
 }
