@@ -25,10 +25,10 @@ function reset() {
 }
 
 function paint(char, data) {
-  if (!data) {
+  if (!data || !data.matrixIndex) {
     return
   }
-  const cell = content.value.find(cell => cell.matrixIndex === data.matrixIndex)
+  const cell = content.value.find(cell => cell.matrixIndex == data.matrixIndex)
   if (cell && cell.char !== '\n') {
     cell.char = char
   }

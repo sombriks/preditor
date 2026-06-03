@@ -20,6 +20,8 @@ function draw(down, x, y) {
          @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"
     ><span :key="c.index" v-for="c in content"
            :data-matrix-index="c.matrixIndex"
+           :data-row-index="c.rowIndex"
+           :data-col-index="c.colIndex"
     >{{ c.char }}</span></pre>
   </div>
 </template>
