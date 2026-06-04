@@ -12,32 +12,28 @@ const {reset} = usePreDoc()
 onMounted(reset)
 </script>
 <template>
-  <div class="tools">
-    <span><!-- not sure why but this fixes an layout issue for the first element--></span>
-    <div>
+  <div class="desk">
+    <div class="tools">
       <CharPalette/>
+      <PreDimensions/>
+      <PreActions/>
     </div>
-    <details>
-      <summary>Options</summary>
-      <div class="options">
-        <span><!-- not sure why but this fixes an layout issue for the first element--></span>
-        <PreDimensions/>
-        <PreActions/>
-      </div>
-    </details>
-  </div>
-  <div class="canvas">
-    <PreCanvas/>
+    <div class="canvas">
+      <PreCanvas/>
+    </div>
   </div>
 </template>
 <style scoped>
-.tools, .options, .canvas {
-  flex-wrap: wrap;
+.desk, .canvas, .tools {
   display: flex;
-  gap: 1rem;
 }
 
 .canvas {
   justify-content: center;
+  flex-grow: 1;
+}
+
+.tools {
+  flex-direction: column;
 }
 </style>

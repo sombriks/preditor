@@ -3,22 +3,15 @@ import {usePreDoc} from "../composables/usePreDoc"
 const {reset} = usePreDoc()
 </script>
 <template>
-  <fieldset>
-    <legend>Actions</legend>
-    <div>
-      <button @click="reset">Reset</button>
-      <button>Copy</button>
-      <button>Paste</button>
-    </div>
-  </fieldset>
+  <details>
+    <summary>Actions</summary>
+    <button @click="reset">Reset</button>
+    <button>Copy</button>
+    <button>Paste</button>
+  </details>
 </template>
 <style scoped>
-fieldset {
+details {
   display: inline-block;
-}
-div {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 </style>

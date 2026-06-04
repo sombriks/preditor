@@ -14,7 +14,7 @@ function setBrush(char) {
       <button :key="char"
               v-for="char in chars"
               @click="setBrush(char)"
-              :class="{unselected: brush !== char}">{{ char }}
+              :class="{selected: brush == char}">{{ char }}
       </button>
     </div>
   </details>
@@ -25,7 +25,16 @@ function setBrush(char) {
   flex-wrap: wrap;
   gap:0;
 }
-.unselected {
-  border: 0;
+button {
+  margin: 0;
+  padding: 0;
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+  border: none;
+}
+
+.selected {
+  color: red;
+  background-color: blue;
 }
 </style>

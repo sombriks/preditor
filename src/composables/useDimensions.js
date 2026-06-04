@@ -1,7 +1,7 @@
 import {ref, computed} from "vue";
 
-const w = ref(25)
-const h = ref(10)
+const w = ref(50)
+const h = ref(30)
 
 const width = computed({
   get: () => w.value,
