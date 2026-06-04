@@ -14,8 +14,8 @@ onMounted(reset)
 <template>
   <div class="desk">
     <div class="tools">
-      <CharPalette/>
       <PreDimensions/>
+      <CharPalette/>
       <PreActions/>
     </div>
     <div class="canvas">
@@ -25,15 +25,16 @@ onMounted(reset)
 </template>
 <style scoped>
 .desk, .canvas, .tools {
+  justify-content: center;
   display: flex;
 }
 
 .canvas {
-  justify-content: center;
   flex-grow: 1;
 }
 
 .tools {
   flex-direction: column;
+  overflow: scroll;
 }
 </style>

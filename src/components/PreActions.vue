@@ -5,7 +5,7 @@ const {reset} = usePreDoc()
 <template>
   <details>
     <summary>Actions</summary>
-    <button @click="reset">Reset</button>
+    <button @click="reset">Clear</button>
     <button>Copy</button>
     <button>Paste</button>
   </details>

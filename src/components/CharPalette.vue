@@ -14,8 +14,7 @@ function setBrush(char) {
       <button :key="char"
               v-for="char in chars"
               @click="setBrush(char)"
-              :class="{selected: brush == char}">{{ char }}
-      </button>
+              :class="{selected: brush == char}">{{ char }}</button>
     </div>
   </details>
 </template>
@@ -23,18 +22,19 @@ function setBrush(char) {
 .palette-container {
   display: flex;
   flex-wrap: wrap;
-  gap:0;
+  gap: 0;
 }
+
 button {
   margin: 0;
   padding: 0;
-  padding-left:0.5rem;
-  padding-right:0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border: none;
 }
 
 .selected {
-  color: red;
-  background-color: blue;
+  color: var(--background-color);
+  background-color: var(--text-color);;
 }
 </style>
