@@ -1,34 +1,39 @@
 <script setup>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {useColors} from "../composables/useColors"
 
-const {generateRainbowRange, generateMonochromeRange} = useColors()
+const {fgHsl, bgHsl, bgStyle, fgStyle, generateRainbowRange, generateMonochromeRange} = useColors()
 
+const selected = ref(fgHsl.value)
 const active = ref(false)
-const selected = ref(true)
-const fg = ref('#ffffff')
-const bg = ref('#000000')
+const mode = ref(true)
 
 const colors = generateRainbowRange(100)
-const bright = generateMonochromeRange(0, 20)
+const bright = computed(() => generateMonochromeRange(20, selected.value.hue))
 
 function setColor(c) {
-  if(selected.value) {
-    fg.value = c.style
+  selected.value = c
+  if (mode.value) {
+    fgHsl.value = c
   } else {
-    bg.value = c.style
+    bgHsl.value = c
   }
-  active.value = false
 }
 </script>
 <template>
   <button v-if="!active"
-          @click="active = true">c:[<span class="current">🭜</span>]
+          @click="active = true">[<span class="current">🭜</span>]
   </button>
   <div v-if="active"
        class="color-mode">
-    <label>fg:<input name="color-mode" type="radio" v-model="selected" :value="true"/></label>
-    <label>bg:<input name="color-mode" type="radio" v-model="selected" :value="false"/></label>
+    <label>fg:<input name="color-mode" type="radio" v-model="mode" :value="true"/></label>
+    <label>bg:<input name="color-mode" type="radio" v-model="mode" :value="false"/></label>
+  </div>
+  <div v-if="active"
+       class="color-mode">
+    <div class="preview">
+      [<span class="current">🭜</span>]
+    </div>
   </div>
   <div v-if="active"
        class="color-box">
@@ -44,15 +49,24 @@ function setColor(c) {
           :style="{color: mono.style}"
           @click="setColor(mono)">▒</span>
   </div>
+  <div v-if="active"
+       class="color-mode">
+    <button @click="active = false">close</button>
+  </div>
 </template>
 <style scoped>
 .current {
-  background-color: v-bind(bg);
-  color: v-bind(fg);
+  background-color: v-bind(bgStyle);
+  color: v-bind(fgStyle);
 }
 
 .color-mode {
   display: flex;
+  justify-content: space-around;
+}
+
+.preview {
+  font-size: 2em;
 }
 
 .color-box {

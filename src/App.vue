@@ -16,8 +16,8 @@ onMounted(reset)
     <div class="tools">
       <CharPalette/>
       <ColorPalette/>
-      <PreDimensions/>
-      <PreActions/>
+<!--      <PreDimensions/>-->
+<!--      <PreActions/>-->
     </div>
     <div class="canvas">
       <PreCanvas/>

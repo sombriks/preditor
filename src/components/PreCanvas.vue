@@ -1,8 +1,10 @@
 <script setup>
 import {computed, ref} from "vue"
 import {usePreDoc} from "../composables/usePreDoc"
+import {useColors} from "../composables/useColors"
 
 const {brush, content, width, height, paint} = usePreDoc()
+const {bgStyle, fgStyle} = useColors()
 
 const row = ref(0)
 const col = ref(0)
@@ -28,19 +30,27 @@ function draw(down, x, y) {
 <template>
   <div>
     <fieldset>
-      <legend>w:[{{width}}]h:[{{height}}]x:[{{col}}]y:[{{row}}]l:[{{brush}}]</legend>
+      <legend>w:[{{ width }}]h:[{{ height }}]x:[{{ col }}]y:[{{ row }}]l:[<span class="current-color">{{ brush }}</span>]
+      </legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"
-      ><span :key="c.index" v-for="c in content"
-             :data-matrix-index="c.matrixIndex"
+      ><span :key="c.matrixIndex"
+             v-for="c in content"
              :data-row-index="c.rowIndex"
              :data-col-index="c.colIndex"
+             :data-matrix-index="c.matrixIndex"
+             :style="{color: c.fgStyle, backgroundColor: c.bgStyle}"
              :class="{cursor: matrixCell && matrixCell.matrixIndex == c.matrixIndex}"
       >{{ c.char }}</span></pre>
     </fieldset>
   </div>
 </template>
 <style scoped>
+.current-color {
+  color: v-bind(fgStyle);
+  background-color: v-bind(bgStyle);
+}
+
 fieldset {
   border: 1px solid var(--text-color);
   background-color: var(--background-color-alt);
@@ -50,9 +60,11 @@ fieldset {
   padding-bottom: 0;
 
 }
+
 legend {
   margin: 0 auto;
 }
+
 pre {
   background-color: var(--background-color);
   max-width: v-bind(width) rem;

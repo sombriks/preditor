@@ -11,7 +11,7 @@ function setBrush(char) {
 }
 </script>
 <template>
-  <button v-if="!active" @click="active = !active">l:[{{brush}}]</button>
+  <button v-if="!active" @click="active = !active">[{{brush}}]</button>
   <div v-if="active" class="palette-container">
     <button :key="char"
             class="chars"
