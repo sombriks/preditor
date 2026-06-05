@@ -1,22 +1,24 @@
 <script setup>
+import {ref} from "vue"
 import {usePreDoc} from "../composables/usePreDoc"
 
 const {brush, chars} = usePreDoc()
+const active = ref(false)
 
 function setBrush(char) {
+  active.value = false
   brush.value = char
 }
 </script>
 <template>
-  <details>
-    <summary>Palette</summary>
-    <div class="palette-container">
-      <button :key="char"
-              v-for="char in chars"
-              @click="setBrush(char)"
-              :class="{selected: brush == char}">{{ char }}</button>
-    </div>
-  </details>
+  <button v-if="!active" @click="active = !active">l:[{{brush}}]</button>
+  <div v-if="active" class="palette-container">
+    <button :key="char"
+            class="chars"
+            v-for="char in chars"
+            @click="setBrush(char)"
+            :class="{selected: brush == char}">{{ char }}</button>
+  </div>
 </template>
 <style scoped>
 .palette-container {
@@ -25,11 +27,9 @@ function setBrush(char) {
   gap: 0;
 }
 
-button {
+.chars {
   margin: 0;
-  padding: 0;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0 0.5rem;
   border: none;
 }
 

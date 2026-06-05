@@ -28,7 +28,7 @@ function draw(down, x, y) {
 <template>
   <div>
     <fieldset>
-      <legend>{{width}} X {{height}}</legend>
+      <legend>w:[{{width}}]h:[{{height}}]x:[{{col}}]y:[{{row}}]l:[{{brush}}]</legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"
       ><span :key="c.index" v-for="c in content"
@@ -43,6 +43,9 @@ function draw(down, x, y) {
 <style scoped>
 fieldset {
   border: 1px solid var(--text-color);
+  background-color: var(--background-color-alt);
+  margin-top: 0;
+  padding-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
 
@@ -51,6 +54,7 @@ legend {
   margin: 0 auto;
 }
 pre {
+  background-color: var(--background-color);
   max-width: v-bind(width) rem;
   min-width: v-bind(width) rem;
   max-height: v-bind(height) rem;
@@ -59,8 +63,6 @@ pre {
   user-select: none;
   overflow: hidden;
   user-drag: none;
-  margin-top: 0;
-  padding-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
 }

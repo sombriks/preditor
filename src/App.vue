@@ -1,10 +1,10 @@
 <script setup>
 import {onMounted} from "vue"
-
 import PreDimensions from "./components/PreDimensions.vue"
 import PreActions from "./components/PreActions.vue"
 import PreCanvas from "./components/PreCanvas.vue"
 import CharPalette from "./components/CharPalette.vue"
+import ColorPalette from "./components/ColorPalette.vue"
 import {usePreDoc} from "./composables/usePreDoc"
 
 const {reset} = usePreDoc()
@@ -14,8 +14,9 @@ onMounted(reset)
 <template>
   <div class="desk">
     <div class="tools">
-      <PreDimensions/>
       <CharPalette/>
+      <ColorPalette/>
+      <PreDimensions/>
       <PreActions/>
     </div>
     <div class="canvas">
@@ -29,11 +30,11 @@ onMounted(reset)
 }
 
 .canvas {
-  justify-content: center;
   flex-grow: 1;
 }
 
 .tools {
+  justify-content: start;
   flex-direction: column;
 }
 </style>
