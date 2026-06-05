@@ -35,6 +35,5 @@ onMounted(reset)
 
 .tools {
   flex-direction: column;
-  overflow: scroll;
 }
 </style>

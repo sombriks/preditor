@@ -25,31 +25,44 @@ const height = computed({
   }
 })
 
-function reset() {
-  let idx = 0
+const content = computed(() => matrix.value.flat())
+
+function makeMatrix(cols, cells, char) {
   const m = []
-  for (let i = 0; i < height.value; i++) {
+  let matrixIndex = 0
+  for (let rowIndex = 0; rowIndex < cols; rowIndex++) {
     const row = []
-    for (let j = 0; j < width.value; j++) {
-      row.push({char: chars[0], matrixIndex: idx++, rowIndex: i, colIndex: j})
+    for (let colIndex = 0; colIndex < cells; colIndex++) {
+      row.push({char, matrixIndex, rowIndex, colIndex})
+      matrixIndex++
     }
-    row.push({char: '\n', matrixIndex: idx++, rowIndex: i})
+    row.push({char: '\n', matrixIndex, rowIndex})
+    matrixIndex++
     m.push(row)
   }
-  matrix.value = m
+  return m
+}
+
+function reset() {
+  matrix.value = makeMatrix(height.value, width.value, chars[0])
+}
+
+function copyMatrix(origin, destiny) {
+  for (let i = 0; i < origin.length && i < destiny.length; i++) {
+    const oRow = origin[i]
+    const dRow = destiny[i]
+    for (let j = 0; j < oRow.length-1 && j < dRow.length-1; j++) {
+      dRow[j].char = oRow[j].char
+    }
+  }
 }
 
 function resize() {
-  const x0 = width.value
-  const x1 = matrix.value[0].length
-  const y0 = height.value
-  const y1 = matrix.value.length
-  const dx = x0 - x1
-  const dy = y0 - y1
-  
+  const m1 = matrix.value
+  const m2 = makeMatrix(height.value, width.value, chars[0])
+  copyMatrix(m1, m2)
+  matrix.value = m2
 }
-
-const content = computed(() => matrix.value.flat())
 
 export function useDimensions() {
   return {width, height, content, reset, resize}

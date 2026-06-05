@@ -6,13 +6,13 @@ const {width, height, resize} = useDimensions()
 <template>
   <details>
     <summary>Dimensions</summary>
-    <label>Width
+    <label>W
       <input v-model="width"
              type="number"
              min="10"
              max="1000"/>
     </label>
-    <label>Height
+    <label>H
       <input v-model="height"
              type="number"
              min="10"
