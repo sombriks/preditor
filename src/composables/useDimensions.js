@@ -4,7 +4,7 @@ import {useCharacters} from "./useCharacters"
 const {chars} = useCharacters()
 
 const w = ref(50)
-const h = ref(30)
+const h = ref(20)
 const matrix = ref([])
 
 const width = computed({

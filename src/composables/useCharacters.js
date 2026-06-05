@@ -68,7 +68,7 @@ const theBigBlock = `
 ␀␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏
 ␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟
 ␡☉☿♁✡↚↛↟↡○●◌◙◦•∙
-∝∞⌀
+∝∞⌀♥
 `
 
 export function useCharacters() {

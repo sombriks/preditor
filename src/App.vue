@@ -25,11 +25,11 @@ onMounted(reset)
 </template>
 <style scoped>
 .desk, .canvas, .tools {
-  justify-content: center;
   display: flex;
 }
 
 .canvas {
+  justify-content: center;
   flex-grow: 1;
 }
 

@@ -7,10 +7,11 @@ const {width, height, content, reset} = useDimensions()
 
 const brush = ref(chars[0])
 
-function paint(char, data) {
+function paint(brush, data) {
   if (!data || !data.matrixIndex) {
     return
   }
+  const char = brush.value
   const cell = content.value.find(cell => cell.matrixIndex == data.matrixIndex)
   if (cell && cell.char !== '\n') {
     cell.char = char
