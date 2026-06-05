@@ -40,6 +40,7 @@ function setColor(c) {
     <span></span>
     <span v-for="color in colors"
           :style="{color: color.style}"
+          :class="{selection: color.hue == selected.hue}"
           @click="setColor(color)">▒</span>
   </div>
   <div v-if="active"
@@ -47,6 +48,7 @@ function setColor(c) {
     <span></span>
     <span v-for="mono in bright"
           :style="{color: mono.style}"
+          :class="{selection: mono.lightness == selected.lightness}"
           @click="setColor(mono)">▒</span>
   </div>
   <div v-if="active"
@@ -81,5 +83,9 @@ function setColor(c) {
 
 .mono {
   grid-template-rows: repeat(3, 1ch);
+}
+
+.selection {
+  border: 3px outset var(--text-color);
 }
 </style>
