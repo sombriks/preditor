@@ -7,7 +7,7 @@ const {exportTXT, exportHTML, importTXT} = useExportImport()
 
 function exportTo(op) {
   const result = op()
-  if(result) {
+  if (result) {
     navigator.clipboard.writeText(result)
     alert("Exported to clipboard")
   }
@@ -28,6 +28,8 @@ function importFrom(op) {
     <button @click="exportTo(exportHTML)">Export html</button>
     <br/>
     <button @click="importFrom(importTXT)">Import text</button>
+    <br/>
+    <a target="about" href="https://github.com/sombriks/preditor">About...</a>
     <hr/>
     <button @click="active = false">Done</button>
   </div>
