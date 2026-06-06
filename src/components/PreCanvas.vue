@@ -2,11 +2,13 @@
 import {computed, ref} from "vue"
 import {usePreDoc} from "../composables/usePreDoc"
 import {useColors} from "../composables/useColors"
-import {useKeyboard} from "../composables/useKeyboard.js"
+import {useKeyboard} from "../composables/useKeyboard"
+import {useDimensions} from "../composables/useDimensions"
 
-const {brush, content, width, height, paint} = usePreDoc()
 const {bgStyle, fgStyle} = useColors()
 const {onKeyDown, onKeyUp} = useKeyboard()
+const {pushState, popState} = useDimensions()
+const {brush, content, width, height, paint} = usePreDoc()
 
 const row = ref(0)
 const col = ref(0)
@@ -27,10 +29,6 @@ function draw(down, x, y) {
     col.value = colIndex
   }
   paint(brush, spanMaybe.dataset)
-}
-
-function pushHistory() {
-  console.log("pushing history")
 }
 
 function keyPaint(e) {
@@ -66,7 +64,8 @@ onKeyDown("alt+arrowup", (e) => arrowup(e, true))
 onKeyDown("alt+arrowdown", (e) => arrowdown(e, true))
 onKeyDown("alt+arrowleft", (e) => arrowleft(e, true))
 onKeyDown("alt+arrowright", (e) => arrowright(e, true))
-onKeyUp("alt", pushHistory)
+onKeyUp("alt", pushState)
+onKeyDown("ctrl+z", popState)
 </script>
 <template>
   <div>
@@ -75,7 +74,7 @@ onKeyUp("alt", pushHistory)
       </legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"
-           @mouseup="pushHistory"
+           @mouseup="pushState"
       ><span :key="c.matrixIndex"
              v-for="c in content"
              :data-row-index="c.rowIndex"

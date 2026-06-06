@@ -12,7 +12,6 @@ function onKeyEvent(event, shortcut, handler) {
       combination.push(key)
     }
     const shortcutStr = combination.join('+')
-    // console.log(event, shortcutStr, shortcut, e)
     if (shortcutStr == shortcut) {
       event.preventDefault?.()
       handler(e)
@@ -31,7 +30,6 @@ function onKeyDown(shortcut, handler) {
 }
 
 function onKeyUp(shortcut, handler) {
-  console.log("keyup")
   onKeyEvent('keyup', shortcut, handler)
 }
 

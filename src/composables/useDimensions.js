@@ -6,6 +6,7 @@ const {chars} = useCharacters()
 const w = ref(50)
 const h = ref(20)
 const matrix = ref([])
+const matrixState = ref([])
 
 const width = computed({
   get: () => w.value,
@@ -43,18 +44,41 @@ function makeMatrix(cols, cells, char) {
   return m
 }
 
-function reset() {
-  matrix.value = makeMatrix(height.value, width.value, chars[0])
-}
-
 function copyMatrix(origin, destiny) {
   for (let i = 0; i < origin.length && i < destiny.length; i++) {
     const oRow = origin[i]
     const dRow = destiny[i]
-    for (let j = 0; j < oRow.length-1 && j < dRow.length-1; j++) {
+    for (let j = 0; j < oRow.length - 1 && j < dRow.length - 1; j++) {
       dRow[j].char = oRow[j].char
+      dRow[j].bgStyle = oRow[j].bgStyle
+      dRow[j].fgStyle = oRow[j].fgStyle
+
     }
   }
+}
+
+function pushState() {
+  const m1 = matrix.value
+  const m2 = makeMatrix(height.value, width.value, chars[0])
+  copyMatrix(m1, m2)
+  matrixState.value.push(m2)
+  if(matrixState.value.length > 50) {
+    matrixState.value.shift()
+  }
+}
+
+function popState() {
+  if(!matrixState.value.length) return
+  const m1 = matrixState.value.pop()
+  const m2 = matrixState.value.pop()
+  if(m2) matrix.value = m2
+  else if (m1) matrix.value = m1
+  pushState()
+}
+
+function reset() {
+  matrix.value = makeMatrix(height.value, width.value, chars[0])
+  pushState()
 }
 
 function resize() {
@@ -62,8 +86,9 @@ function resize() {
   const m2 = makeMatrix(height.value, width.value, chars[0])
   copyMatrix(m1, m2)
   matrix.value = m2
+  pushState()
 }
 
 export function useDimensions() {
-  return {width, height, content, reset, resize}
+  return {width, height, content, reset, resize, pushState, popState}
 }
