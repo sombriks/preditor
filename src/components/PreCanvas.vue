@@ -2,10 +2,11 @@
 import {computed, ref} from "vue"
 import {usePreDoc} from "../composables/usePreDoc"
 import {useColors} from "../composables/useColors"
-import {useKeyboardShortcuts} from "../composables/useKeyboardShortcuts"
+import {useKeyboard} from "../composables/useKeyboard.js"
 
 const {brush, content, width, height, paint} = usePreDoc()
 const {bgStyle, fgStyle} = useColors()
+const {onKeyDown, onKeyUp} = useKeyboard()
 
 const row = ref(0)
 const col = ref(0)
@@ -28,49 +29,44 @@ function draw(down, x, y) {
   paint(brush, spanMaybe.dataset)
 }
 
-function arrowup(e) {
-  row.value = Math.max(0, row.value - 1)
+function pushHistory() {
+  console.log("pushing history")
 }
 
-function arrowdown(e) {
-  row.value = Math.min(height.value - 1, parseInt(row.value) + 1)
-}
-
-function arrowleft(e) {
-  col.value = Math.max(0, col.value - 1)
-}
-
-function arrowright(e) {
-  col.value = Math.min(width.value - 1, parseInt(col.value) + 1)
-}
-
-function alt(e) {
+function keyPaint(e) {
   paint(brush, matrixCell.value)
 }
 
-useKeyboardShortcuts({
-  arrowup,
-  arrowdown,
-  arrowleft,
-  arrowright,
-  alt,
-  "alt+arrowup": (e) => {
-    arrowup(e);
-    alt(e);
-  },
-  "alt+arrowdown": (e) => {
-    arrowdown(e);
-    alt(e);
-  },
-  "alt+arrowleft": (e) => {
-    arrowleft(e);
-    alt(e);
-  },
-  "alt+arrowright": (e) => {
-    arrowright(e);
-    alt(e);
-  },
-})
+function arrowup(e, andPaint = false) {
+  row.value = Math.max(0, row.value - 1)
+  if (andPaint) keyPaint(e)
+}
+
+function arrowdown(e, andPaint = false) {
+  row.value = Math.min(height.value - 1, parseInt(row.value) + 1)
+  if (andPaint) keyPaint(e)
+}
+
+function arrowleft(e, andPaint = false) {
+  col.value = Math.max(0, col.value - 1)
+  if (andPaint) keyPaint(e)
+}
+
+function arrowright(e, andPaint = false) {
+  col.value = Math.min(width.value - 1, parseInt(col.value) + 1)
+  if (andPaint) keyPaint(e)
+}
+
+onKeyDown("arrowup", arrowup)
+onKeyDown("arrowdown", arrowdown)
+onKeyDown("arrowleft", arrowleft)
+onKeyDown("arrowright", arrowright)
+onKeyDown("alt", keyPaint)
+onKeyDown("alt+arrowup", (e) => arrowup(e, true))
+onKeyDown("alt+arrowdown", (e) => arrowdown(e, true))
+onKeyDown("alt+arrowleft", (e) => arrowleft(e, true))
+onKeyDown("alt+arrowright", (e) => arrowright(e, true))
+onKeyUp("alt", pushHistory)
 </script>
 <template>
   <div>
@@ -79,6 +75,7 @@ useKeyboardShortcuts({
       </legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"
+           @mouseup="pushHistory"
       ><span :key="c.matrixIndex"
              v-for="c in content"
              :data-row-index="c.rowIndex"

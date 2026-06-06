@@ -3,8 +3,8 @@ import {useDimensions} from "./useDimensions"
 import {useCharacters} from "./useCharacters"
 import {useColors} from "./useColors.js"
 
-const {bgStyle, fgStyle} = useColors()
 const {chars} = useCharacters()
+const {bgStyle, fgStyle} = useColors()
 const {width, height, content, reset} = useDimensions()
 
 const brush = ref(chars[0])
