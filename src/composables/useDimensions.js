@@ -20,7 +20,7 @@ const width = computed({
 const height = computed({
   get: () => h.value,
   set: (value) => {
-    if (value < 10) value = 10
+    if (value < 5) value = 5
     if (value > 1000) value = 1000
     h.value = value
   }
@@ -52,7 +52,6 @@ function copyMatrix(origin, destiny) {
       dRow[j].char = oRow[j].char
       dRow[j].bgStyle = oRow[j].bgStyle
       dRow[j].fgStyle = oRow[j].fgStyle
-
     }
   }
 }

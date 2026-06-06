@@ -4,6 +4,7 @@ import PreCanvas from "./components/PreCanvas.vue"
 import PreActions from "./components/PreActions.vue"
 import CharPalette from "./components/CharPalette.vue"
 import ColorPalette from "./components/ColorPalette.vue"
+import PreDimensions from "./components/PreDimensions.vue"
 import {useDimensions} from "./composables/useDimensions"
 
 const {reset} = useDimensions()
@@ -15,6 +16,7 @@ onMounted(reset)
     <div class="tools">
       <CharPalette/>
       <ColorPalette/>
+      <PreDimensions/>
       <PreActions/>
     </div>
     <div class="canvas">

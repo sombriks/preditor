@@ -4,8 +4,8 @@ import {useCharacters} from "./useCharacters"
 import {useColors} from "./useColors.js"
 
 const {chars} = useCharacters()
+const {content} = useDimensions()
 const {bgStyle, fgStyle} = useColors()
-const {width, height, content, reset} = useDimensions()
 
 const brush = ref(chars[0])
 
@@ -20,6 +20,6 @@ function paint(brush, data) {
   cell.fgStyle = fgStyle.value
 }
 
-export function usePreDoc() {
-  return {chars, brush, content, width, height, paint}
+export function useBrush() {
+  return {brush, paint}
 }

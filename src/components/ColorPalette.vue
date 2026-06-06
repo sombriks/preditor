@@ -52,7 +52,7 @@ function setColor(c) {
           @click="setColor(mono)">▒</span>
   </div>
   <div v-if="active"
-       class="color-mode">
+       class="color-mode end">
     <button @click="active = false">close</button>
   </div>
 </template>
@@ -88,5 +88,9 @@ function setColor(c) {
 
 .selection {
   border: 3px outset var(--text-color);
+}
+
+.end {
+  margin-bottom: 1rem;
 }
 </style>

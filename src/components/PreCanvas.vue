@@ -1,14 +1,14 @@
 <script setup>
 import {computed, ref} from "vue"
-import {usePreDoc} from "../composables/usePreDoc"
+import {useBrush} from "../composables/useBrush.js"
 import {useColors} from "../composables/useColors"
 import {useKeyboard} from "../composables/useKeyboard"
 import {useDimensions} from "../composables/useDimensions"
 
+const {brush, paint} = useBrush()
 const {bgStyle, fgStyle} = useColors()
 const {onKeyDown, onKeyUp} = useKeyboard()
-const {pushState, popState} = useDimensions()
-const {brush, content, width, height, paint} = usePreDoc()
+const {content, width, height, pushState, popState} = useDimensions()
 
 const row = ref(0)
 const col = ref(0)
@@ -70,7 +70,7 @@ onKeyDown("ctrl+z", popState)
 <template>
   <div>
     <fieldset>
-      <legend>w:[{{ width }}]h:[{{ height }}]x:[{{ col }}]y:[{{ row }}]
+      <legend>x:[{{ col }}]y:[{{ row }}]
       </legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"

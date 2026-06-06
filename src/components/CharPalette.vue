@@ -1,8 +1,10 @@
 <script setup>
 import {ref} from "vue"
-import {usePreDoc} from "../composables/usePreDoc"
+import {useBrush} from "../composables/useBrush.js"
+import {useCharacters} from "../composables/useCharacters"
 
-const {brush, chars} = usePreDoc()
+const {chars} = useCharacters()
+const {brush} = useBrush()
 const active = ref(false)
 
 function setBrush(char) {

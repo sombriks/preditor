@@ -1,11 +1,21 @@
 <script setup>
 import {ref} from "vue"
-import {usePreDoc} from "../composables/usePreDoc"
-import {useDimensions} from "../composables/useDimensions"
+import {useExportImport} from "../composables/useExportImport"
 
-const {width, height} = usePreDoc()
-const {reset, resize} = useDimensions()
 const active = ref(false)
+const {exportTXT, exportHTML, importTXT} = useExportImport()
+
+function exportTo(op) {
+  const result = op()
+  if(result) {
+    navigator.clipboard.writeText(result)
+    alert("Exported to clipboard")
+  }
+}
+
+function importFrom(op) {
+  console.log("import")
+}
 </script>
 <template>
   <button v-if="!active"
@@ -13,34 +23,14 @@ const active = ref(false)
   </button>
   <div v-if="active"
        class="tool-box">
-    <label>W
-      <input v-model="width"
-             type="number"
-             min="10"
-             max="1000"/>
-    </label>
-    <label>H
-      <input v-model="height"
-             type="number"
-             min="10"
-             max="1000"/>
-    </label>
+    <button @click="exportTo(exportTXT)">Export text</button>
     <br/>
-    <button @click="resize">Resize</button>
-    <button @click="reset">Reset</button>
-    <hr/>
-    <button>Export text</button>
+    <button @click="exportTo(exportHTML)">Export html</button>
     <br/>
-    <button>Export html</button>
-    <br/>
-    <button>import text</button>
+    <button @click="importFrom(importTXT)">Import text</button>
     <hr/>
     <button @click="active = false">Done</button>
   </div>
 </template>
 <style scoped>
-label {
-  text-wrap: nowrap;
-  padding-right: 1rem;
-}
 </style>
