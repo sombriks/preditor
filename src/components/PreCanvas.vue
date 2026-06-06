@@ -28,12 +28,48 @@ function draw(down, x, y) {
   paint(brush, spanMaybe.dataset)
 }
 
+function arrowup(e) {
+  row.value = Math.max(0, row.value - 1)
+}
+
+function arrowdown(e) {
+  row.value = Math.min(height.value - 1, parseInt(row.value) + 1)
+}
+
+function arrowleft(e) {
+  col.value = Math.max(0, col.value - 1)
+}
+
+function arrowright(e) {
+  col.value = Math.min(width.value - 1, parseInt(col.value) + 1)
+}
+
+function alt(e) {
+  paint(brush, matrixCell.value)
+}
+
 useKeyboardShortcuts({
-  arrowup: (e) => row.value = Math.max(0, row.value - 1),
-  arrowdown: (e) => row.value = Math.min(height.value - 1, row.value + 1),
-  arrowleft: (e) => col.value = Math.max(0, col.value - 1),
-  arrowright: (e) => col.value = Math.min(width.value - 1, col.value + 1),
-  " ": (e) => paint(brush, matrixCell.value)
+  arrowup,
+  arrowdown,
+  arrowleft,
+  arrowright,
+  alt,
+  "alt+arrowup": (e) => {
+    arrowup(e);
+    alt(e);
+  },
+  "alt+arrowdown": (e) => {
+    arrowdown(e);
+    alt(e);
+  },
+  "alt+arrowleft": (e) => {
+    arrowleft(e);
+    alt(e);
+  },
+  "alt+arrowright": (e) => {
+    arrowright(e);
+    alt(e);
+  },
 })
 </script>
 <template>
