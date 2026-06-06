@@ -2,6 +2,7 @@
 import {computed, ref} from "vue"
 import {usePreDoc} from "../composables/usePreDoc"
 import {useColors} from "../composables/useColors"
+import {useKeyboardShortcuts} from "../composables/useKeyboardShortcuts"
 
 const {brush, content, width, height, paint} = usePreDoc()
 const {bgStyle, fgStyle} = useColors()
@@ -9,7 +10,7 @@ const {bgStyle, fgStyle} = useColors()
 const row = ref(0)
 const col = ref(0)
 
-const matrixCell = computed(() => content.value.filter(c => c.rowIndex == row.value && c.colIndex == col.value)?.[0])
+const matrixCell = computed(() => content.value.filter(c => c.rowIndex == row.value && c.colIndex == col.value).pop())
 
 function draw(down, x, y) {
   if (!down) {
@@ -26,6 +27,14 @@ function draw(down, x, y) {
   }
   paint(brush, spanMaybe.dataset)
 }
+
+useKeyboardShortcuts({
+  arrowup: (e) => row.value = Math.max(0, row.value - 1),
+  arrowdown: (e) => row.value = Math.min(height.value - 1, row.value + 1),
+  arrowleft: (e) => col.value = Math.max(0, col.value - 1),
+  arrowright: (e) => col.value = Math.min(width.value - 1, col.value + 1),
+  " ": (e) => paint(brush, matrixCell.value)
+})
 </script>
 <template>
   <div>
@@ -40,7 +49,7 @@ function draw(down, x, y) {
              :data-col-index="c.colIndex"
              :data-matrix-index="c.matrixIndex"
              :style="{color: c.fgStyle, backgroundColor: c.bgStyle}"
-             :class="{cursor: matrixCell && matrixCell.matrixIndex == c.matrixIndex}"
+             :class="{cursor: matrixCell.matrixIndex == c.matrixIndex}"
       >{{ c.char }}</span></pre>
     </fieldset>
   </div>
@@ -58,7 +67,6 @@ fieldset {
   padding-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
-
 }
 
 legend {
@@ -84,8 +92,8 @@ pre:hover {
 }
 
 .cursor {
-  color: var(--background-color);
-  background-color: var(--text-color);
+  color: var(--background-color) !important;
+  background-color: var(--text-color) !important;
   animation: blink-smooth 1.5s ease-in-out infinite;
 }
 
