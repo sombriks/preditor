@@ -70,7 +70,7 @@ onKeyDown("ctrl+z", popState)
 <template>
   <div>
     <fieldset>
-      <legend>w:[{{ width }}]h:[{{ height }}]x:[{{ col }}]y:[{{ row }}]l:[<span class="current-color">{{ brush }}</span>]
+      <legend>w:[{{ width }}]h:[{{ height }}]x:[{{ col }}]y:[{{ row }}]
       </legend>
       <pre @click="draw(true, $event.clientX, $event.clientY)"
            @mousemove="draw($event.buttons, $event.clientX, $event.clientY)"

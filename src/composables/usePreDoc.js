@@ -21,5 +21,5 @@ function paint(brush, data) {
 }
 
 export function usePreDoc() {
-  return {chars, brush, content, width, height, reset, paint}
+  return {chars, brush, content, width, height, paint}
 }

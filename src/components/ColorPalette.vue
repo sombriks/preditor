@@ -73,6 +73,7 @@ function setColor(c) {
 
 .color-box {
   display: grid;
+  border: 1px solid var(--text-color);
   grid-template-columns: repeat(20, 1ch);
   grid-template-rows: repeat(6, var(--line-height));
 }
@@ -82,7 +83,7 @@ function setColor(c) {
 }
 
 .mono {
-  grid-template-rows: repeat(3, 1ch);
+  grid-template-rows: repeat(2, var(--line-height));
 }
 
 .selection {
