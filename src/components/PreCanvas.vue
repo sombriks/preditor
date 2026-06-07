@@ -1,12 +1,10 @@
 <script setup>
 import {computed, ref} from "vue"
 import {useBrush} from "../composables/useBrush.js"
-import {useColors} from "../composables/useColors"
 import {useKeyboard} from "../composables/useKeyboard"
 import {useDimensions} from "../composables/useDimensions"
 
 const {brush, paint} = useBrush()
-const {bgStyle, fgStyle} = useColors()
 const {onKeyDown, onKeyUp} = useKeyboard()
 const {content, contentWidth, contentHeight, pushState, popState} = useDimensions()
 

@@ -1,11 +1,14 @@
 <script setup>
 import {ref} from "vue"
+import {useDimensions} from "../composables/useDimensions"
 import {useExportImport} from "../composables/useExportImport"
 
 const active = ref(false)
-const importDialog = ref(false)
 const imporTextData = ref("")
-const {exportTXT, exportHTML, importTXT} = useExportImport()
+const importDialog = ref(false)
+
+const  {popState} = useDimensions()
+const {exportTXT, importTXT} = useExportImport()
 
 function exportTo(op) {
   const result = op()
@@ -31,11 +34,11 @@ function cancelImport() {
   </button>
   <div v-if="active"
        class="tool-box">
-    <button @click="exportTo(exportTXT)">Export text</button>
+    <button @click="exportTo(exportTXT)">Export</button>
     <br/>
-    <button @click="exportTo(exportHTML)">Export html</button>
+    <button @click="importDialog = true">Import</button>
     <br/>
-    <button @click="importDialog = true">Import text</button>
+    <button @click="popState">Undo</button>
     <br/>
     <a target="about" href="https://github.com/sombriks/preditor">About...</a>
     <hr/>
