@@ -1,6 +1,6 @@
-import {useDimensions} from "./useDimensions"
+import {usePreCanvas} from "./usePreCanvas.js"
 
-const {content, replace} = useDimensions()
+const {content, replace} = usePreCanvas()
 
 function exportTXT() {
   return content.value.map(c => c.char).join('')

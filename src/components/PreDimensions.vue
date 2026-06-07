@@ -1,9 +1,9 @@
 <script setup>
 import {ref} from "vue"
-import {useDimensions} from "../composables/useDimensions"
+import {usePreCanvas} from "../composables/usePreCanvas"
 
 const active = ref(false)
-const {width, height, reset, resize} = useDimensions()
+const {width, height, reset, resize} = usePreCanvas()
 
 </script>
 <template>

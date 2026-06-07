@@ -5,9 +5,9 @@ import PreActions from "./components/PreActions.vue"
 import CharPalette from "./components/CharPalette.vue"
 import ColorPalette from "./components/ColorPalette.vue"
 import PreDimensions from "./components/PreDimensions.vue"
-import {useDimensions} from "./composables/useDimensions"
+import {usePreCanvas} from "./composables/usePreCanvas.js"
 
-const {reset} = useDimensions()
+const {reset} = usePreCanvas()
 
 onMounted(reset)
 </script>

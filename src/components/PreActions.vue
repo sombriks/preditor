@@ -1,13 +1,13 @@
 <script setup>
 import {ref} from "vue"
-import {useDimensions} from "../composables/useDimensions"
+import {usePreCanvas} from "../composables/usePreCanvas"
 import {useExportImport} from "../composables/useExportImport"
 
 const active = ref(false)
 const imporTextData = ref("")
 const importDialog = ref(false)
 
-const  {popState} = useDimensions()
+const  {popState} = usePreCanvas()
 const {exportTXT, importTXT} = useExportImport()
 
 function exportTo(op) {
@@ -38,7 +38,7 @@ function cancelImport() {
     <br/>
     <button @click="importDialog = true">Import</button>
     <br/>
-    <button @click="popState">Undo</button>
+    <button @click="popState">Undo [ctrl+z]</button>
     <br/>
     <a target="about" href="https://github.com/sombriks/preditor">About...</a>
     <hr/>

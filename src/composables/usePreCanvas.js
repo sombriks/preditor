@@ -104,6 +104,6 @@ function replace(mChar) {
   height.value = mh
 }
 
-export function useDimensions() {
+export function usePreCanvas() {
   return {width, height, content, contentWidth, contentHeight, replace, resize, reset, pushState, popState}
 }

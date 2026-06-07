@@ -1,12 +1,12 @@
 <script setup>
 import {computed, ref} from "vue"
-import {useBrush} from "../composables/useBrush.js"
+import {useBrush} from "../composables/useBrush"
 import {useKeyboard} from "../composables/useKeyboard"
-import {useDimensions} from "../composables/useDimensions"
+import {usePreCanvas} from "../composables/usePreCanvas"
 
 const {brush, paint} = useBrush()
 const {onKeyDown, onKeyUp} = useKeyboard()
-const {content, contentWidth, contentHeight, pushState, popState} = useDimensions()
+const {content, contentWidth, contentHeight, pushState, popState} = usePreCanvas()
 
 const row = ref(0)
 const col = ref(0)
@@ -82,6 +82,7 @@ onKeyDown("ctrl+z", popState)
              :class="{cursor: matrixCell.matrixIndex == c.matrixIndex}"
       >{{ c.char }}</span></pre>
     </fieldset>
+    <i>alt+arrows to draw</i>
   </div>
 </template>
 <style scoped>
