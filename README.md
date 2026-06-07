@@ -35,7 +35,7 @@ Bundled with [parceljs][parceljs]
 ╚══════════════════╝
 ```
 
-Free your imagination!
+[Free your imagination and try it out](https://sombriks.github.io/preditor/)!
 
 ## Roadmap
 
