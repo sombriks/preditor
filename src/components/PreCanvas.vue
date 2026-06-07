@@ -8,7 +8,7 @@ import {useDimensions} from "../composables/useDimensions"
 const {brush, paint} = useBrush()
 const {bgStyle, fgStyle} = useColors()
 const {onKeyDown, onKeyUp} = useKeyboard()
-const {content, width, height, pushState, popState} = useDimensions()
+const {content, contentWidth, contentHeight, pushState, popState} = useDimensions()
 
 const row = ref(0)
 const col = ref(0)
@@ -41,7 +41,7 @@ function arrowup(e, andPaint = false) {
 }
 
 function arrowdown(e, andPaint = false) {
-  row.value = Math.min(height.value - 1, parseInt(row.value) + 1)
+  row.value = Math.min(contentHeight.value - 1, parseInt(row.value) + 1)
   if (andPaint) keyPaint(e)
 }
 
@@ -51,7 +51,7 @@ function arrowleft(e, andPaint = false) {
 }
 
 function arrowright(e, andPaint = false) {
-  col.value = Math.min(width.value - 1, parseInt(col.value) + 1)
+  col.value = Math.min(contentWidth.value - 1, parseInt(col.value) + 1)
   if (andPaint) keyPaint(e)
 }
 
@@ -87,11 +87,6 @@ onKeyDown("ctrl+z", popState)
   </div>
 </template>
 <style scoped>
-.current-color {
-  color: v-bind(fgStyle);
-  background-color: v-bind(bgStyle);
-}
-
 fieldset {
   border: 1px solid var(--text-color);
   background-color: var(--background-color-alt);

@@ -27,6 +27,8 @@ const height = computed({
 })
 
 const content = computed(() => matrix.value.flat())
+const contentWidth = computed(() => (matrix.value[0]?.length || 0) - 1)
+const contentHeight = computed(() => matrix.value.length)
 
 function makeMatrix(cols, cells, char) {
   const m = []
@@ -61,16 +63,16 @@ function pushState() {
   const m2 = makeMatrix(height.value, width.value, chars[0])
   copyMatrix(m1, m2)
   matrixState.value.push(m2)
-  if(matrixState.value.length > 50) {
+  if (matrixState.value.length > 50) {
     matrixState.value.shift()
   }
 }
 
 function popState() {
-  if(!matrixState.value.length) return
+  if (!matrixState.value.length) return
   const m1 = matrixState.value.pop()
   const m2 = matrixState.value.pop()
-  if(m2) matrix.value = m2
+  if (m2) matrix.value = m2
   else if (m1) matrix.value = m1
   pushState()
 }
@@ -88,6 +90,18 @@ function resize() {
   pushState()
 }
 
+function replace(mChar) {
+  const mw = mChar[0].length - 1
+  const mh = mChar.length
+  const m1 = makeMatrix(mh, mw, chars[0])
+  const blank = m1.flat()
+  const mContent = mChar.flat()
+  for (let i = 0; i < blank.length && i < mContent.length; i++) {
+    blank[i].char = mContent[i]
+  }
+  matrix.value = m1
+}
+
 export function useDimensions() {
-  return {width, height, content, reset, resize, pushState, popState}
+  return {width, height, content, contentWidth, contentHeight, replace, resize, reset, pushState, popState}
 }

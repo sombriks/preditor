@@ -17,7 +17,7 @@ function exportTo(op) {
 
 function importFrom(op) {
   importDialog.value = false
-  console.log("import")
+  importTXT(imporTextData.value)
 }
 
 function cancelImport() {
@@ -41,6 +41,7 @@ function cancelImport() {
     <hr/>
     <button @click="active = false">Done</button>
   </div>
+  <!-- import dialog -->
   <div class="panel"
        v-if="importDialog">
     <form class="dialog"
@@ -84,5 +85,4 @@ function cancelImport() {
   display: flex;
   justify-content: space-between;
 }
-
 </style>
