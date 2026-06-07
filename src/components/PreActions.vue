@@ -52,7 +52,7 @@ function cancelImport() {
       <label for="txt">Text to import</label>
       <textarea id="txt" rows="5" v-model="imporTextData"></textarea>
       <div>
-        <button @click="cancelImport">Cancel</button>
+        <button type="button" @click="cancelImport">Cancel</button>
         <input type="submit" value="Import"/>
       </div>
     </form>
