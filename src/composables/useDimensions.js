@@ -100,6 +100,8 @@ function replace(mChar) {
     blank[i].char = mContent[i]
   }
   matrix.value = m1
+  width.value = mw
+  height.value = mh
 }
 
 export function useDimensions() {
