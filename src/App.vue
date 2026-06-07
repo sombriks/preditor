@@ -5,7 +5,8 @@ import PreActions from "./components/PreActions.vue"
 import CharPalette from "./components/CharPalette.vue"
 import ColorPalette from "./components/ColorPalette.vue"
 import PreDimensions from "./components/PreDimensions.vue"
-import {usePreCanvas} from "./composables/usePreCanvas.js"
+
+import {usePreCanvas} from "./composables/usePreCanvas"
 
 const {reset} = usePreCanvas()
 
