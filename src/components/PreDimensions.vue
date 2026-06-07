@@ -37,4 +37,8 @@ label {
   text-wrap: nowrap;
   padding-right: 1rem;
 }
+
+.tool-box {
+  margin-bottom: 1rem;
+}
 </style>
