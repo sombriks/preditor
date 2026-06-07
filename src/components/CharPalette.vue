@@ -28,7 +28,7 @@ function setBrush(char, smart = false) {
             :class="{selected: brush.ch == char}">{{ char }}
     </button>
   </details>
-  <button v-if="active" @click="active = false">Close</button>
+  <button v-if="active" @click="active = false">Done</button>
 </template>
 <style scoped>
 .palette-container {

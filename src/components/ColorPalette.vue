@@ -53,7 +53,7 @@ function setColor(c) {
   </div>
   <div v-if="active"
        class="color-mode end">
-    <button @click="active = false">close</button>
+    <button @click="active = false">Done</button>
   </div>
 </template>
 <style scoped>
